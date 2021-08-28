@@ -8,7 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="toggleLeftDrawer"
+          @click="drawer"
         />
 
       </q-toolbar>
@@ -80,9 +80,6 @@
 </template>
 
 <script>
-
-  
-
 import { defineComponent, ref } from 'vue'
 import { date } from 'quasar'
 
@@ -97,11 +94,13 @@ export default {
     }
   },
   
-  todaysDate() {
-    const timeStamp = Date.now()
-    return date.formatDate(timeStamp, 'dddd D MMMM')
-    
+  computed:{
+    todaysDate(){
+      const timeStamp = Date.now()
+      return date.formatDate(timeStamp, 'dddd D MMMM')
+    }
   }
+  
   
 }
 </script>
