@@ -44,16 +44,16 @@
             </q-item>
 
             <q-item
-              to="/help"
+              to="/edit"
               exact
               clickable 
               v-ripple>
               <q-item-section avatar>
-                <q-icon name="help" />
+                <q-icon name="account_box" />
               </q-item-section>
 
               <q-item-section>
-                Help
+                Profile
               </q-item-section>
             </q-item>
 
@@ -62,11 +62,14 @@
 
         <q-img class="absolute-top" src="../statics/cat.jpg" style="height: 192px">
           <div class="absolute-bottom bg-transparent">
-            <q-avatar size="56px" class="q-mb-sm">
-              <img src="https://ui-avatars.com/api/?rounded=true&name=rafaela+medeiros">
+            <q-avatar
+             v-if="user.name"
+             size="56px" 
+             class="q-mb-sm">
+              <img :src="`https://ui-avatars.com/api/?rounded=true&name=${user.name}`">
             </q-avatar>
-            <div class="text-weight-bold">Rafaela Medeiros</div>
-            <div>@rafinha</div>
+            <div class="text-weight-bold">{{user.name}}</div>
+            <div>{{user.username}}</div>
           </div>
         </q-img>
       </q-drawer>
@@ -82,13 +85,14 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import { date } from 'quasar'
-
+import { useStore } from 'vuex'
 
 
 export default {
 
 
   setup () {
+    const $store = useStore()
     return {
       drawer: ref(false)
     }
@@ -101,9 +105,9 @@ export default {
       return date.formatDate(timeStamp, 'dddd D MMMM')
     },
     user(){
-      //return this.$store.getters["geral/getUser"]
-
-      return this.store
+  
+      return (this.$store.getters["geral/getUser"])
+      
       
     }
   }

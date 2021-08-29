@@ -17,6 +17,7 @@
       class="q-mt-md"
       color="primary" 
       label="Edit" 
+      @click="editUser()"
       />
   </q-page>
 </template>
@@ -30,6 +31,16 @@ export default {
     return{
       name: '',
       username: ''
+    }
+  },
+  methods:{
+    editUser(){
+      let user = {
+        name: this.name,
+        username: this.username,
+      }
+      this.$store.commit("geral/setUser", user)
+      this.$q.notify("User Updated");
     }
   }
 }
