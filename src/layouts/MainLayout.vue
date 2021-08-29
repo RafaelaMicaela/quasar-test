@@ -8,7 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="drawer"
+          @click="drawer = !drawer"
         />
 
       </q-toolbar>
@@ -63,7 +63,7 @@
         <q-img class="absolute-top" src="../statics/cat.jpg" style="height: 192px">
           <div class="absolute-bottom bg-transparent">
             <q-avatar size="56px" class="q-mb-sm">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              <img src="https://ui-avatars.com/api/?rounded=true&name=rafaela+medeiros">
             </q-avatar>
             <div class="text-weight-bold">Rafaela Medeiros</div>
             <div>@rafinha</div>
@@ -84,20 +84,27 @@ import { defineComponent, ref } from 'vue'
 import { date } from 'quasar'
 
 
+
 export default {
 
 
   setup () {
-
     return {
       drawer: ref(false)
     }
+
   },
   
   computed:{
     todaysDate(){
       const timeStamp = Date.now()
       return date.formatDate(timeStamp, 'dddd D MMMM')
+    },
+    user(){
+      //return this.$store.getters["geral/getUser"]
+
+      return this.store
+      
     }
   }
   
